@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script>
+        function calculate() {
+            // HTMLのinputの値をそれぞれの変数に代入する処理
+            // （xとyにはString型をNumber型に変換した値を代入している）
+            const x = Number(document.getElementById("x").value);
+            const y = Number(document.getElementById("y").value);
+            // 変数operatorには入力フォーム「? =」の値が入る（String型）
+            const operator = document.getElementById("operator").value;
+
+            // 計算結果の変数zを宣言
+            let z;
+
+            // 計算結果を表示する際の文言の変数resultを宣言
+            let result;
+
+            /*
+            ① 変数operatorが「+」「-」「*」「/」のそれぞれの場合の計算結果を変数zに代入する
+            ② 変数operatorが上記の記号以外なら変数zにnullを代入する
+            */
+            if (operator == "+") {
+                z = x + y;
+            } else if (operator == "-") {
+                z = x - y;
+            } else if (operator == "*") {
+                z = x * y;
+            } else if (operator == "/") {
+                z = x / y;
+            } else {
+                z = null;
+            }
+
+
+            /*
+            ③ 変数zにnullが代入されていなければ以下の文字列を変数resultに代入する
+            [計算式]の計算結果は[変数z]です
+            ④ 変数zがnullなら以下の文字列を変数resultに代入する
+            演算子が無効です
+            */
+            if (z != null) {
+                result = x + operator + y + "の計算結果は" + z + "です";
+            } else {
+                result="演算子は無効です";
+            }
+
+            // resultをHTMLのpタグに表示する処理
+            document.getElementById("result").textContent = result;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>計算機</h1>
+    <h3>X ? Y = Z</h3>
+    X = <input id="x" value="1">
+    <br>
+    Y = <input id="y" value="2">
+    <br>
+    ? = <input id="operator" value="+">
+    <br><br>
+    <button onclick="calculate()">計算する</button>
+    <p id="result"></p>
+</body>
+
+</html>
